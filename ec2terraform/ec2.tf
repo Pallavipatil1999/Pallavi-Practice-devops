@@ -1,3 +1,12 @@
+terraform{
+  backend "s3"{
+    bucket ="pallavi-bucket-backup"
+    region = "us-east-1"
+  }
+}
+
+
+
 provider "aws" {
     region = "us-east-1"
     access_key = ""
@@ -8,7 +17,7 @@ provider "aws" {
 
   instance_type = "t3.micro"
   key_name = "id_rsa"
-  vpc_security_group_ids = []
+  vpc_security_group_ids = ["sg1"]
   tags = {
     NAme ="myec2"
     name="pallavi"
