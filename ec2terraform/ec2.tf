@@ -1,19 +1,20 @@
 terraform{
   backend "s3"{
-    bucket ="pallavi-bucket-backup"
-    region = "us-east-1"
+    bucket =var.mybucket
+    region = var.region
+    key = "tfstate"
   }
 }
 
 
 
 provider "aws" {
-    region = "us-east-1"
+    region = var.region
     access_key = ""
     secret_key = ""
 }
   resource "aws_instance" "myec2"{
-  ami = "ami-0b6d9d3d33ba97d99"
+  ami = var.ami
 
   instance_type = "t3.micro"
   key_name = "id_rsa"
@@ -24,3 +25,4 @@ provider "aws" {
     env="dev"
   }
   }
+ 
